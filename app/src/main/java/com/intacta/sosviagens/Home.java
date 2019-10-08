@@ -32,6 +32,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.SearchView;
+import androidx.cardview.widget.CardView;
 import androidx.core.app.ActivityCompat;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -141,8 +142,7 @@ public class Home extends AppCompatActivity implements OnMapReadyCallback, Googl
     private TextView message;
     private ProgressBar finding;
     private RecyclerView suggestions;
-    private LinearLayout concessionaries;
-    private SlidingUpPanelLayout slideuppanel;
+    private CardView concessionaries;
 
 
     @Override
@@ -319,9 +319,9 @@ public class Home extends AppCompatActivity implements OnMapReadyCallback, Googl
                 roads.setLayoutManager(llm);
                 roads.setHasFixedSize(true);
                 if (searchlist.size() > 0) {
-                        Animation in = AnimationUtils.loadAnimation(activity, R.anim.slide_in_top);
-                        roads.setVisibility(View.VISIBLE);
-                        roads.startAnimation(in);
+                    Animation in = AnimationUtils.loadAnimation(activity, R.anim.slide_in_top);
+                    roads.setVisibility(View.VISIBLE);
+                    roads.startAnimation(in);
 
 
                 }
@@ -555,16 +555,10 @@ public class Home extends AppCompatActivity implements OnMapReadyCallback, Googl
                 }
                 if (dataSnapshot.getChildrenCount() == 0) {
                     message.setText("Nenhuma concessionária localizada");
+                    finding.setVisibility(View.GONE);
                     if (roadslist.size() > 0) {
                         roadslist.clear();
                     }
-                    message.setTextColor(Color.GRAY);
-                    concessionaries.setBackgroundColor(Color.WHITE);
-                    concessionaries.setEnabled(false);
-                    message.setTypeface(null, Typeface.NORMAL);
-                    message.setCompoundDrawablesWithIntrinsicBounds(null, null, null, null);
-                    finding.setVisibility(View.GONE);
-
 
                     if (alerts != null) {
                         return;
@@ -573,10 +567,9 @@ public class Home extends AppCompatActivity implements OnMapReadyCallback, Googl
                     alerts.noConcess(localizacao);
                 } else {
                     message.setText(dataSnapshot.getChildrenCount() + " concessionárias encontradas");
-                    message.setTextColor(Color.BLACK);
-                     message.setCompoundDrawablesWithIntrinsicBounds(null, null, activity.getDrawable(R.drawable.ic_brightness_1_black_24dp), null);
-                    message.setTypeface(null, Typeface.BOLD);
+                     message.setCompoundDrawablesWithIntrinsicBounds(null,  activity.getDrawable(R.drawable.ic_brightness_1_black_24dp),null, null);
                     finding.setVisibility(View.GONE);
+
                     RecyclerMoreThenOneAdapter recyclerMoreThenOneAdapter = new RecyclerMoreThenOneAdapter(activity, roadslist);
                     GridLayoutManager llm = new GridLayoutManager(activity, 1, RecyclerView.VERTICAL, false);
                     suggestions.setAdapter(recyclerMoreThenOneAdapter);
@@ -741,6 +734,5 @@ public class Home extends AppCompatActivity implements OnMapReadyCallback, Googl
         finding = findViewById(R.id.finding);
         suggestions = findViewById(R.id.suggestions);
         concessionaries = findViewById(R.id.concessionaries);
-        slideuppanel = findViewById(R.id.slideuppanel);
-     }
+    }
 }

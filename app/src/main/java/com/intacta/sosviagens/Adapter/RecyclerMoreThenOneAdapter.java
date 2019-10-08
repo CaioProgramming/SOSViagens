@@ -14,6 +14,7 @@ import android.view.ViewGroup;
 import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.Button;
+import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -56,7 +57,7 @@ public class RecyclerMoreThenOneAdapter extends RecyclerView.Adapter<RecyclerMor
     @Override
     public RecyclerMoreThenOneAdapter.MyViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View view;
-        LayoutInflater mInflater = LayoutInflater.from(mActivity.getBaseContext());
+        LayoutInflater mInflater = LayoutInflater.from(mActivity);
         view = mInflater.inflate(R.layout.roadcardlayout,parent,false);
 
         return new MyViewHolder(view);
@@ -68,11 +69,7 @@ public class RecyclerMoreThenOneAdapter extends RecyclerView.Adapter<RecyclerMor
     public void onBindViewHolder(@NonNull final RecyclerMoreThenOneAdapter.MyViewHolder holder, final int position) {
         final Road r = roadlist.get(position);
         Animation animation = AnimationUtils.loadAnimation(mActivity,R.anim.fade_in);
-        if (!r.getRodovia().equals("Rodovia já cadastrada")) {
-            holder.concess.setVisibility(View.GONE);
-            holder.concess.setTextSize(24);
-            holder.layout.setBackgroundColor(Color.TRANSPARENT);
-        } else {
+
             holder.concess.setText(r.getConcessionaria() + "(" + r.getTelefone() + ")");
             holder.layout.startAnimation(animation);
             holder.layout.setOnClickListener(new View.OnClickListener() {
@@ -81,10 +78,8 @@ public class RecyclerMoreThenOneAdapter extends RecyclerView.Adapter<RecyclerMor
                     ligacao(roadlist.get(position));
                 }
             });
-        }
-        if (position == roadlist.size()){
-            holder.layout.setBackgroundTintList(ColorStateList.valueOf(Color.TRANSPARENT));
-        }
+
+
 
 
 
@@ -122,16 +117,12 @@ public class RecyclerMoreThenOneAdapter extends RecyclerView.Adapter<RecyclerMor
 
     @Override
     public int getItemCount() {
-        if(roadlist.size() == 0){
-            return 0;
-
-        }else{
-            return roadlist.size();}
+            return roadlist.size();
     }
 
     static class MyViewHolder extends  RecyclerView.ViewHolder {
         TextView concess;
-         RelativeLayout layout;
+        LinearLayout layout;
          MyViewHolder(@NonNull View itemView) {
             super(itemView);
              concess = itemView.findViewById(R.id.concess);

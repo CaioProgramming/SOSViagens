@@ -48,6 +48,7 @@ import java.util.Date;
 import java.util.List;
 import java.util.Objects;
 
+import de.mateware.snacky.Snacky;
 import hyogeun.github.com.colorratingbarlib.ColorRatingBar;
 
 import static com.intacta.sosviagens.Utils.Utilities.RC_SIGN_IN;
@@ -248,6 +249,9 @@ public class Alerts {
         timelayout = myDialog.findViewById(R.id.timelayout);
         timetype = myDialog.findViewById(R.id.timetype);
     }
+
+
+
 }
 
 
