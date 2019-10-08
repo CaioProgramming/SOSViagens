@@ -1,0 +1,14 @@
+<resources>
+    <string name="app_name">SOS Rodovias</string>
+    <string name="default_location">São Paulo</string>
+    <string name="title_activity_home">Home</string>
+    <string name="title_home">Home</string>
+    <string name="empty_number">Nenhum número localizado</string>
+    <string name="privacypolicy">A Intacta garante total sigilo dos dados de usuários, os dados sensíveis(tais como localização e acesso ao telefone), esses dados serão utilizados somente no aplicativo para auxiliar o utilizador a encontrar o número de emergência de acordo com sua localização e realizar a ligação.</string>
+    <string name="search_hint">Pesquisar rodovia...</string>
+
+    <string-array name="tempo">
+        <item>minutos</item>
+        <item>horas</item>
+     </string-array>
+</resources>

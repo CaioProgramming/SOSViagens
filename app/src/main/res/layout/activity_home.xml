@@ -1,0 +1,111 @@
+<?xml version="1.0" encoding="utf-8"?>
+<com.sothree.slidinguppanel.SlidingUpPanelLayout android:layout_width="match_parent"
+    xmlns:sothree="http://schemas.android.com/apk/res-auto"
+    android:gravity="bottom"
+    android:fitsSystemWindows="true"
+    android:id="@+id/slideuppanel"
+    android:focusable="true"
+    android:focusableInTouchMode="true"
+    sothree:umanoPanelHeight="40dp"
+    sothree:umanoShadowHeight="4dp"
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_height="match_parent">
+    <RelativeLayout
+        xmlns:app="http://schemas.android.com/apk/res-auto"
+        xmlns:tools="http://schemas.android.com/tools"
+        android:id="@+id/container"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        tools:context=".Home">
+
+        <fragment
+            android:id="@+id/map"
+            android:name="com.google.android.gms.maps.SupportMapFragment"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            tools:context=".Home" />
+
+        <androidx.recyclerview.widget.RecyclerView
+            android:visibility="gone"
+            android:background="@color/white"
+             android:padding="10dp"
+              android:layout_above="@id/navigation"
+            android:id="@+id/roads"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+        <androidx.appcompat.widget.SearchView
+            android:layout_margin="10dp"
+            app:queryBackground="@color/transparent"
+             android:background="@drawable/round"
+            app:iconifiedByDefault="false"
+            android:animateLayoutChanges="true"
+            app:queryHint="Pesquise rodovias ou estradas"
+            android:id="@+id/search"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content" />
+
+
+
+
+        <com.google.android.material.bottomnavigation.BottomNavigationView
+            android:id="@+id/navigation"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="0dp"
+            android:layout_marginEnd="0dp"
+            app:elevation="0dp"
+            android:background="@color/white"
+            android:layout_alignParentBottom="true"
+            app:menu="@menu/navigation" />
+    </RelativeLayout>
+
+    <LinearLayout xmlns:app="http://schemas.android.com/apk/res-auto"
+        android:orientation="vertical"
+        android:elevation="0dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <LinearLayout
+            android:id="@+id/concessionaries"
+            android:foreground="?attr/selectableItemBackground"
+            android:background="@color/white"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+            <TextView
+                android:textColor="@color/black"
+                style="@style/TextAppearance.AppCompat.Widget.ActionBar.Subtitle"
+                android:textStyle="bold"
+                android:id="@+id/message"
+                android:text="Buscando concessionárias..."
+                android:padding="10dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content" />
+            <ProgressBar
+                android:layout_gravity="center"
+                android:id="@+id/finding"
+                android:indeterminate="true"
+                android:layout_width="wrap_content"
+                android:layout_height="24dp" />
+
+        </LinearLayout>
+        <androidx.core.widget.NestedScrollView
+            android:orientation="vertical"
+            android:background="@drawable/topround"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/suggestions"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
+
+
+        </androidx.core.widget.NestedScrollView>
+
+
+    </LinearLayout>
+
+
+
+</com.sothree.slidinguppanel.SlidingUpPanelLayout>
+

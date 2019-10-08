@@ -1,0 +1,73 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    xmlns:Skeleton="http://schemas.android.com/tools"
+    android:padding="1dp"
+    android:foreground="?attr/selectableItemBackground"
+    android:id="@+id/layout"
+    android:layout_marginBottom="1dp"
+    android:layout_height="wrap_content">
+
+    <io.rmiri.skeleton.SkeletonGroup
+        android:id="@+id/skeleton_group"
+         Skeleton:SK_BackgroundViewsColor="#EEEEEE"
+        Skeleton:SK_animationAutoStart="true"
+        Skeleton:SK_animationDirection="LTR"
+        Skeleton:SK_animationDuration="1000"
+        Skeleton:SK_animationFinishType="gradient"
+        Skeleton:SK_animationNormalType="gradient"
+        Skeleton:SK_backgroundMainColor="@android:color/transparent"
+        Skeleton:SK_highLightColor="#DEDEDE"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+            <io.rmiri.skeleton.SkeletonView
+                android:padding="1dp"
+                Skeleton:SK_cornerRadius="20dp"
+                Skeleton:SK_padding="1dp"
+                Skeleton:SK_shapeType="rect"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <LinearLayout
+                    android:layout_margin="10dp"
+                    android:orientation="horizontal"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content">
+                    <ImageView
+                        android:id="@+id/type"
+                        android:padding="5dp"
+                        android:contentDescription="map placeholder icon"
+                        android:src="@drawable/ic_place_black_24dp"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content" />
+                    <LinearLayout
+                        android:backgroundTint="@color/grey_300"
+                        android:background="@drawable/bottom_line"
+                        android:orientation="vertical"
+                        android:layout_width="match_parent"
+                        android:layout_height="wrap_content">
+                        <TextView
+                            android:drawablePadding="5dp"
+                            android:id="@+id/road"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:padding="5dp"
+                            android:text="Road"
+                            android:textAlignment="textStart"
+                            android:textSize="18sp"
+                            android:textColor="@color/black"
+                            />
+                        <TextView
+                            android:id="@+id/concess"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:padding="5dp"
+                            android:text="Concess"
+                            android:textAlignment="textStart" />
+                    </LinearLayout>
+
+                </LinearLayout>
+            </io.rmiri.skeleton.SkeletonView>
+     </io.rmiri.skeleton.SkeletonGroup>
+
+</RelativeLayout>

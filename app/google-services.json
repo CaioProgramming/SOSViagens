@@ -1,0 +1,55 @@
+{
+  "project_info": {
+    "project_number": "469482816803",
+    "firebase_url": "https://sosviagens-br.firebaseio.com",
+    "project_id": "sosviagens-br",
+    "storage_bucket": "sosviagens-br.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:469482816803:android:7b7c7356fd8e6c13",
+        "android_client_info": {
+          "package_name": "com.intacta.sosviagens"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "469482816803-t5fbqpt4rg1dbddcg5lnhq624ucf6t84.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.intacta.sosviagens",
+            "certificate_hash": "27f9c3e4d6329afb5ec5c475f97e4c1a6fe0f664"
+          }
+        },
+        {
+          "client_id": "469482816803-g95sbbeev38fnlj9si9tg3i0kudkhfqc.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBRocTTTOfdb61iJuKcQ0f7Rg9fiwPINRU"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "469482816803-g95sbbeev38fnlj9si9tg3i0kudkhfqc.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "469482816803-rsnbodb5sq0m7f5q1osb2hgl8n7k5tif.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "intacta.SOSVIagens"
+              }
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}
