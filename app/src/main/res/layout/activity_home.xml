@@ -6,8 +6,9 @@
     android:id="@+id/slideuppanel"
     android:focusable="true"
     android:focusableInTouchMode="true"
-    sothree:umanoPanelHeight="40dp"
-    sothree:umanoShadowHeight="4dp"
+    sothree:umanoPanelHeight="0dp"
+    sothree:umanoShadowHeight="0dp"
+    sothree:umanoOverlay="false"
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_height="match_parent">
     <RelativeLayout
@@ -53,8 +54,9 @@
             android:layout_height="wrap_content"
             android:layout_marginStart="0dp"
             android:layout_marginEnd="0dp"
-            app:elevation="0dp"
+            app:elevation="3dp"
             android:background="@color/white"
+            app:itemBackground="@color/white"
             android:layout_alignParentBottom="true"
             app:menu="@menu/navigation" />
     </RelativeLayout>
@@ -62,9 +64,12 @@
     <LinearLayout xmlns:app="http://schemas.android.com/apk/res-auto"
         android:orientation="vertical"
         android:elevation="0dp"
+        android:backgroundTint="@color/grey_100"
+        android:background="@drawable/topround"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
         <LinearLayout
+            android:visibility="gone"
             android:id="@+id/concessionaries"
             android:foreground="?attr/selectableItemBackground"
             android:background="@color/white"

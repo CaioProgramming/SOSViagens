@@ -1,67 +1,91 @@
 [
     {
-        "featureType": "landscape.man_made",
-        "elementType": "geometry",
+        "featureType": "all",
+        "elementType": "labels.text.fill",
         "stylers": [
             {
-                "color": "#f9f5ed"
+                "saturation": 36
             },
             {
-                "saturation": "0"
+                "color": "#333333"
+            },
+            {
+                "lightness": 40
             }
         ]
     },
     {
-        "featureType": "landscape.natural",
-        "elementType": "geometry",
+        "featureType": "all",
+        "elementType": "labels.text.stroke",
         "stylers": [
             {
-                "color": "#f9f5ed"
+                "visibility": "on"
+            },
+            {
+                "color": "#ffffff"
+            },
+            {
+                "lightness": 16
             }
         ]
     },
     {
-        "featureType": "landscape.natural.terrain",
-        "elementType": "geometry",
+        "featureType": "all",
+        "elementType": "labels.icon",
         "stylers": [
             {
                 "visibility": "off"
+            }
+        ]
+    },
+    {
+        "featureType": "administrative",
+        "elementType": "geometry.fill",
+        "stylers": [
+            {
+                "color": "#fefefe"
+            },
+            {
+                "lightness": 20
+            }
+        ]
+    },
+    {
+        "featureType": "administrative",
+        "elementType": "geometry.stroke",
+        "stylers": [
+            {
+                "color": "#fefefe"
+            },
+            {
+                "lightness": 17
+            },
+            {
+                "weight": 1.2
+            }
+        ]
+    },
+    {
+        "featureType": "landscape",
+        "elementType": "geometry",
+        "stylers": [
+            {
+                "color": "#f5f5f5"
+            },
+            {
+                "lightness": 20
             }
         ]
     },
     {
         "featureType": "poi",
-        "elementType": "labels",
-        "stylers": [
-            {
-                "visibility": "on"
-            }
-        ]
-    },
-    {
-        "featureType": "poi.attraction",
-        "elementType": "all",
-        "stylers": [
-            {
-                "visibility": "on"
-            }
-        ]
-    },
-    {
-        "featureType": "poi.business",
-        "elementType": "all",
-        "stylers": [
-            {
-                "visibility": "off"
-            }
-        ]
-    },
-    {
-        "featureType": "poi.medical",
         "elementType": "geometry",
         "stylers": [
             {
-                "color": "#fbd3da"
+                "color": "#f5f5f5"
+            },
+            {
+                "lightness": 21
             }
         ]
     },
@@ -70,34 +94,10 @@
         "elementType": "geometry",
         "stylers": [
             {
-                "color": "#dbeed0"
-            }
-        ]
-    },
-    {
-        "featureType": "poi.sports_complex",
-        "elementType": "all",
-        "stylers": [
+                "color": "#dedede"
+            },
             {
-                "visibility": "on"
-            }
-        ]
-    },
-    {
-        "featureType": "road",
-        "elementType": "geometry.stroke",
-        "stylers": [
-            {
-                "visibility": "off"
-            }
-        ]
-    },
-    {
-        "featureType": "road",
-        "elementType": "labels",
-        "stylers": [
-            {
-                "visibility": "on"
+                "lightness": 21
             }
         ]
     },
@@ -106,10 +106,10 @@
         "elementType": "geometry.fill",
         "stylers": [
             {
-                "color": "#fcfcdd"
+                "color": "#ffffff"
             },
             {
-                "saturation": "0"
+                "lightness": 17
             }
         ]
     },
@@ -118,73 +118,49 @@
         "elementType": "geometry.stroke",
         "stylers": [
             {
-                "color": "#efd151"
+                "color": "#ffffff"
             },
             {
-                "visibility": "on"
+                "lightness": 29
+            },
+            {
+                "weight": 0.2
             }
         ]
     },
     {
         "featureType": "road.arterial",
-        "elementType": "geometry.fill",
+        "elementType": "geometry",
         "stylers": [
             {
                 "color": "#ffffff"
-            }
-        ]
-    },
-    {
-        "featureType": "road.arterial",
-        "elementType": "geometry.stroke",
-        "stylers": [
-            {
-                "color": "#dcdcdc"
             },
             {
-                "visibility": "on"
+                "lightness": 18
             }
         ]
     },
     {
         "featureType": "road.local",
-        "elementType": "geometry.fill",
+        "elementType": "geometry",
         "stylers": [
-            {
-                "visibility": "on"
-            },
             {
                 "color": "#ffffff"
-            }
-        ]
-    },
-    {
-        "featureType": "road.local",
-        "elementType": "geometry.stroke",
-        "stylers": [
-            {
-                "visibility": "on"
             },
             {
-                "color": "#d4cdb9"
+                "lightness": 16
             }
         ]
     },
     {
-        "featureType": "transit.station.airport",
-        "elementType": "geometry.fill",
+        "featureType": "transit",
+        "elementType": "geometry",
         "stylers": [
             {
-                "color": "#e1e6ea"
-            }
-        ]
-    },
-    {
-        "featureType": "transit.station.airport",
-        "elementType": "geometry.stroke",
-        "stylers": [
+                "color": "#f2f2f2"
+            },
             {
-                "color": "#b5c5d2"
+                "lightness": 19
             }
         ]
     },
@@ -193,7 +169,10 @@
         "elementType": "geometry",
         "stylers": [
             {
-                "color": "#a2daf2"
+                "color": "#dee7f5"
+            },
+            {
+                "lightness": 17
             }
         ]
     }

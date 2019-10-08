@@ -7,8 +7,22 @@
     <string name="privacypolicy">A Intacta garante total sigilo dos dados de usuários, os dados sensíveis(tais como localização e acesso ao telefone), esses dados serão utilizados somente no aplicativo para auxiliar o utilizador a encontrar o número de emergência de acordo com sua localização e realizar a ligação.</string>
     <string name="search_hint">Pesquisar rodovia...</string>
 
+    <string name="title_activity_drawer">DrawerActivity</string>
+    <string name="navigation_drawer_open">Open navigation drawer</string>
+    <string name="navigation_drawer_close">Close navigation drawer</string>
+    <string name="nav_header_title">Android Studio</string>
+    <string name="nav_header_subtitle">android.studio@android.com</string>
+    <string name="nav_header_desc">Navigation header</string>
+    <string name="action_settings">Settings</string>
+    <string name="menu_home">Home</string>
+
+    <string name="menu_gallery">Gallery</string>
+    <string name="menu_slideshow">Slideshow</string>
+    <string name="menu_tools">Tools</string>
+    <string name="menu_share">Share</string>
+    <string name="menu_send">Send</string>
     <string-array name="tempo">
         <item>minutos</item>
         <item>horas</item>
-     </string-array>
+    </string-array>
 </resources>

@@ -12,8 +12,7 @@ import android.view.animation.Animation;
 import android.view.animation.AnimationUtils;
 import android.widget.Button;
 
-import com.google.android.material.dialog.MaterialAlertDialogBuilder;
-import com.google.android.material.tabs.TabLayout;
+ import com.google.android.material.tabs.TabLayout;
 import com.intacta.sosviagens.Adapter.ViewPagerAdapter;
 import com.intacta.sosviagens.Utils.Preferences;
 
