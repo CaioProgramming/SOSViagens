@@ -9,7 +9,6 @@ import android.content.IntentSender;
 import android.content.pm.PackageManager;
 import android.content.res.Resources;
 import android.graphics.Color;
-import android.graphics.Typeface;
 import android.location.Address;
 import android.location.Geocoder;
 import android.location.Location;
@@ -18,11 +17,9 @@ import android.location.LocationManager;
 import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
-import android.view.animation.Animation;
-import android.view.animation.AnimationUtils;
-import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
@@ -32,6 +29,7 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.SearchView;
+import androidx.appcompat.widget.Toolbar;
 import androidx.cardview.widget.CardView;
 import androidx.core.app.ActivityCompat;
 import androidx.recyclerview.widget.GridLayoutManager;
@@ -58,6 +56,7 @@ import com.google.android.gms.maps.model.MapStyleOptions;
 import com.google.android.gms.tasks.OnFailureListener;
 import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+import com.google.android.material.floatingactionbutton.FloatingActionButton;
 import com.google.firebase.database.DataSnapshot;
 import com.google.firebase.database.DatabaseError;
 import com.google.firebase.database.FirebaseDatabase;
@@ -71,7 +70,6 @@ import com.intacta.sosviagens.Beans.Road;
 import com.intacta.sosviagens.Utils.Alerts;
 import com.intacta.sosviagens.Utils.PermissionRequests;
 import com.intacta.sosviagens.Utils.Utilities;
-import com.sothree.slidinguppanel.SlidingUpPanelLayout;
 
 import java.io.IOException;
 import java.util.ArrayList;
@@ -97,9 +95,7 @@ public class Home extends AppCompatActivity implements OnMapReadyCallback, Googl
     // arraylist com rodovias que será usado no recyclervi
     private GoogleMap mMap;// Classe do google maps para inicia-lo no fragment
     LocationManager manager;// gerenciador de localização
-    SearchView search; //Barra de pesquisa
-    RecyclerView roads; // recyclerview que vai apresentar rodovias e/ou números
-    String numero, concess; // numero e concessionária para realizar ligação quando encontrados
+     String numero, concess; // numero e concessionária para realizar ligação quando encontrados
     BottomNavigationView navigation;
     RelativeLayout container;
     Alerts alerts;
@@ -117,21 +113,11 @@ public class Home extends AppCompatActivity implements OnMapReadyCallback, Googl
         public boolean onNavigationItemSelected(@NonNull MenuItem item) {
             switch (item.getItemId()) {
                 case R.id.navigation_home:
-                    if (roads.getVisibility() == View.VISIBLE) {
-                        roads.setVisibility(View.GONE);
-                    }
+
                     return true;
                 case R.id.navigation_call:
-                    if (roads.getVisibility() == View.GONE) {
-                        roads.setVisibility(View.VISIBLE);
-                        if (!search.isIconified()) {
-                            search.setIconified(true);
-
-                        }
-                    }
-                    //Método para carregar os números de emrgência
                     Load_Numbers();
-
+                    //Método para carregar os números de emrgência
                     return true;
 
             }
@@ -143,6 +129,8 @@ public class Home extends AppCompatActivity implements OnMapReadyCallback, Googl
     private ProgressBar finding;
     private RecyclerView suggestions;
     private CardView concessionaries;
+     private FloatingActionButton floatbutton;
+    private Toolbar toolbar;
 
 
     @Override
@@ -152,8 +140,6 @@ public class Home extends AppCompatActivity implements OnMapReadyCallback, Googl
 
         this.container = findViewById(R.id.container);
         this.navigation = findViewById(R.id.navigation);
-        this.roads = findViewById(R.id.roads);
-        this.search = findViewById(R.id.search);
         navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener);
 
 
@@ -173,48 +159,6 @@ public class Home extends AppCompatActivity implements OnMapReadyCallback, Googl
         //showDefaultLocation();
         adapter = new RecyclerAdapter(activity, roadslist);
         adapter.notifyDataSetChanged();
-
-        //método de pesquisa que irá exibir items de acordo com o que você pesquisou
-        search.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
-            @Override
-            public boolean onQueryTextSubmit(String query) {
-
-                if (query == null || query.isEmpty()) {
-                    searchlist.clear();
-                    roads.removeAllViews();
-                    return false;
-                } else {
-                    Pesquisar(query);
-                    return false;
-                }
-            }
-
-            @Override
-            public boolean onQueryTextChange(String newText) {
-                if (newText == null || newText.isEmpty()) {
-                    roadslist.clear();
-                    if (roads.getVisibility() == View.VISIBLE) {
-                        roads.setVisibility(View.INVISIBLE);
-                    }
-                    return false;
-                } else {
-                    Pesquisar(newText);
-                    return false;
-                }
-            }
-        });
-
-        //método que ao fechar barra de pesquisa também minimiza a recyclerview
-        search.setOnCloseListener(new SearchView.OnCloseListener() {
-            @Override
-            public boolean onClose() {
-                roadslist.clear();
-                if (roads.getVisibility() == View.VISIBLE) {
-                    roads.setVisibility(View.GONE);
-                }
-                return false;
-            }
-        });
 
 
         mGoogleApiClient = new GoogleApiClient.Builder(this)
@@ -315,16 +259,7 @@ public class Home extends AppCompatActivity implements OnMapReadyCallback, Googl
 
                 GridLayoutManager llm = new GridLayoutManager(activity, 1, RecyclerView.VERTICAL, false);
                 RecyclerAdapter adapter = new RecyclerAdapter(activity, searchlist);
-                roads.setAdapter(adapter);
-                roads.setLayoutManager(llm);
-                roads.setHasFixedSize(true);
-                if (searchlist.size() > 0) {
-                    Animation in = AnimationUtils.loadAnimation(activity, R.anim.slide_in_top);
-                    roads.setVisibility(View.VISIBLE);
-                    roads.startAnimation(in);
 
-
-                }
                 adapter.notifyDataSetChanged();
 
 
@@ -342,10 +277,9 @@ public class Home extends AppCompatActivity implements OnMapReadyCallback, Googl
     //Carrega os números salvos no servidor
     protected void Load_Numbers() {
         System.out.println("Buscando números...");
-        roads.setVisibility(View.VISIBLE);
         final ArrayList<Number> numberlist = new ArrayList<>();
         numberlist.clear();
-        numberlist.add(new Number(Utilities.calltitle,null,null));
+        numberlist.add(new Number(Utilities.calltitle, null, null));
 
         Query databasereference = FirebaseDatabase.getInstance().getReference().child("numbers").orderByChild("tipo");
         databasereference.keepSynced(true);
@@ -368,10 +302,7 @@ public class Home extends AppCompatActivity implements OnMapReadyCallback, Googl
                 RecyclerNumbersAdapter numberadapter = new RecyclerNumbersAdapter(activity, numberlist);
                 GridLayoutManager llm = new GridLayoutManager(activity, 1, RecyclerView.VERTICAL, false);
                 numberadapter.notifyDataSetChanged();
-                roads.setAdapter(numberadapter);
-                roads.setLayoutManager(llm);
-                roads.setHasFixedSize(true);
-                roads.setVisibility(View.VISIBLE);
+
             }
 
             @Override
@@ -389,11 +320,17 @@ public class Home extends AppCompatActivity implements OnMapReadyCallback, Googl
         mMap.setMinZoomPreference(20);
         LatLng saoPaulo = new LatLng(-23.533773, -46.625290);
         mMap.moveCamera(CameraUpdateFactory.newLatLng(saoPaulo));
-        search.setQueryHint(getString(R.string.default_location));
+        //toolbar.setTitle(getString(R.string.default_location));
 
 
     }
 
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.toolbar,menu);
+        return super.onCreateOptionsMenu(menu);
+    }
 
     @TargetApi(Build.VERSION_CODES.M)
     private void actuallocation() {
@@ -442,13 +379,10 @@ public class Home extends AppCompatActivity implements OnMapReadyCallback, Googl
             if (street == null) {
                 street = address.getFeatureName();
             }
-            if (search.getQueryHint().toString().equals(street)) {
-                return;
-            }
 
             System.out.println("Endereco atual " + street);
-            if (roadslist == null || roadslist.isEmpty() || !search.getQueryHint().toString().equals(street)) {
-                search.setQueryHint(street);
+            if (roadslist == null || roadslist.isEmpty()) {
+//                search.setQueryHint(street);
                 EncontrarRodovia(street);
                 mMap.animateCamera(CameraUpdateFactory.newLatLngZoom(
                         new LatLng(location.getLatitude(), location.getLongitude()), 14));
@@ -546,7 +480,7 @@ public class Home extends AppCompatActivity implements OnMapReadyCallback, Googl
                         System.out.println("localização atual: " + localizacao + "/n localização banco de dados: " + rodovia.getRodovia());
 
                     } else {
-                        search.setQueryHint(localizacao);
+                        toolbar.setTitle(localizacao);
                     }
 
 
@@ -554,8 +488,8 @@ public class Home extends AppCompatActivity implements OnMapReadyCallback, Googl
 
                 }
                 if (dataSnapshot.getChildrenCount() == 0) {
-                    message.setText("Nenhuma concessionária localizada");
-                    finding.setVisibility(View.GONE);
+//                    message.setText("Nenhuma concessionária localizada");
+                    //finding.setVisibility(View.GONE);
                     if (roadslist.size() > 0) {
                         roadslist.clear();
                     }
@@ -565,16 +499,6 @@ public class Home extends AppCompatActivity implements OnMapReadyCallback, Googl
                     }
                     alerts = new Alerts(activity, theme);
                     alerts.noConcess(localizacao);
-                } else {
-                    message.setText(dataSnapshot.getChildrenCount() + " concessionárias encontradas");
-                     message.setCompoundDrawablesWithIntrinsicBounds(null,  activity.getDrawable(R.drawable.ic_brightness_1_black_24dp),null, null);
-                    finding.setVisibility(View.GONE);
-
-                    RecyclerMoreThenOneAdapter recyclerMoreThenOneAdapter = new RecyclerMoreThenOneAdapter(activity, roadslist);
-                    GridLayoutManager llm = new GridLayoutManager(activity, 1, RecyclerView.VERTICAL, false);
-                    suggestions.setAdapter(recyclerMoreThenOneAdapter);
-                    recyclerMoreThenOneAdapter.notifyDataSetChanged();
-                    suggestions.setLayoutManager(llm);
                 }
                 located = true;
 
@@ -583,7 +507,7 @@ public class Home extends AppCompatActivity implements OnMapReadyCallback, Googl
             @Override
             public void onCancelled(@NonNull DatabaseError databaseError) {
                 System.out.println("Erro no banco de dados: " + databaseError.getMessage() + " " + databaseError.getDetails());
-                search.setQueryHint(localizacao);
+                toolbar.setTitle(localizacao);
             }
         });
 
@@ -665,8 +589,8 @@ public class Home extends AppCompatActivity implements OnMapReadyCallback, Googl
     public void onPointerCaptureChanged(boolean hasCapture) {
         if (hasCapture) {
 
-            message.setText("Buscando concessionárias...");
-            finding.setVisibility(View.VISIBLE);
+            //message.setText("Buscando concessionárias...");
+           //finding.setVisibility(View.VISIBLE);
             actuallocation();
         }
     }
@@ -731,8 +655,18 @@ public class Home extends AppCompatActivity implements OnMapReadyCallback, Googl
 
     private void initView() {
         message = findViewById(R.id.message);
-        finding = findViewById(R.id.finding);
-        suggestions = findViewById(R.id.suggestions);
-        concessionaries = findViewById(R.id.concessionaries);
+
+        floatbutton = findViewById(R.id.floatbutton);
+        toolbar = findViewById(R.id.toolbar);
+        setSupportActionBar(toolbar);
+        floatbutton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                FabulousFragment dialogFrag = FabulousFragment.newInstance();
+                dialogFrag.setParentFab(floatbutton);
+                dialogFrag.setRoadlist(roadslist);
+                dialogFrag.show(getSupportFragmentManager(), dialogFrag.getTag());
+            }
+        });
     }
 }

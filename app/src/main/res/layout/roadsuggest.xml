@@ -55,9 +55,10 @@
                             android:text="Road"
                             android:textAlignment="textStart"
                             android:textSize="18sp"
-                            android:textColor="@color/black"
+                            android:textColor="@color/white"
                             />
                         <TextView
+                            android:textColor="@color/grey_200"
                             android:id="@+id/concess"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"

@@ -10,6 +10,7 @@
 
 
     <TextView
+        android:drawableStart="@drawable/ic_emergency_hours"
         style="@style/TextAppearance.MaterialComponents.Body1"
         android:textColor="@color/white"
         android:background="@drawable/ripple_call_button"
