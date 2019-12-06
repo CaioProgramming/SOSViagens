@@ -102,9 +102,9 @@ class Alerts(private val activity: Activity){
         val button = dialog.findViewById<Button>(R.id.defaultbutton)
         val icon = dialog.findViewById<ImageView>(R.id.icon)
 
-        activity.atitle.text = "GPS desativado"
-        activity.message.text = "Ative seu GPS para que possamos ajudar a encontrar números de emrgência"
-        activity.defaultbutton.setOnClickListener {
+        title.text = "GPS desativado"
+        message.text = "Ative seu GPS para que possamos ajudar a encontrar números de emrgência"
+        button.setOnClickListener {
             dialog.dismiss()
             activity.startActivity( Intent(Settings.ACTION_LOCATION_SOURCE_SETTINGS))
         }

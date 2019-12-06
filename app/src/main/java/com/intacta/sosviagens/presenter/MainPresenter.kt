@@ -73,6 +73,10 @@ class MainPresenter(val mainFragment: MainFragment) : presentercontracts, Search
         val sosDB = SosDB(this)
 
         if (!sosDB.pesquisa(search)){
+             if (!mainFragment.isAdded){
+                 Log.println(Log.INFO,"roads","fragment is not added")
+                 return
+             }
             fadeOut(mainFragment.progressbar).andThen(
             fadeIn(mainFragment.result))
                     .subscribe()
