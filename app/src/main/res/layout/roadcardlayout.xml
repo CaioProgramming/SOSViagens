@@ -10,9 +10,10 @@
 
 
     <TextView
-        android:drawableStart="@drawable/ic_emergency_hours"
+        android:drawableStart="@drawable/fui_ic_phone_white_24dp"
+        android:drawableTint="@color/colorPrimary"
         style="@style/TextAppearance.MaterialComponents.Body1"
-        android:textColor="@color/white"
+        android:textColor="?android:textColorPrimary"
         android:background="@drawable/ripple_call_button"
         android:id="@+id/concess"
         android:layout_width="match_parent"

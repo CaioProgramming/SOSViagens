@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent">
+
+    <TextView
+        android:alpha="0"
+         android:id="@+id/title"
+        android:text="Números de emergência"
+        android:textAlignment="center"
+        style="@style/TextAppearance.MaterialComponents.Headline6"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+    <View
+        android:alpha="0"
+        android:id="@+id/swipeindicator"
+        android:layout_margin="10dp"
+        android:layout_gravity="center"
+        android:backgroundTint="@color/colorPrimary"
+        android:background="@drawable/scroll_indicator"
+        android:layout_width="90dp"
+        android:layout_height="10dp" />
+        <androidx.appcompat.widget.SearchView
+            android:alpha="0"
+            app:goIcon="@drawable/search"
+            android:layout_margin="10dp"
+            android:id="@+id/searchview"
+            app:queryBackground="@color/transparent"
+            android:background="@drawable/round"
+            app:iconifiedByDefault="false"
+            app:queryHint="Pesquise rodovias e concessionárias"
+            android:layout_width="match_parent"
+            android:layout_height="?attr/actionBarSize" >
+
+
+        </androidx.appcompat.widget.SearchView>
+
+
+
+     <ProgressBar
+         android:alpha="0"
+         android:indeterminate="true"
+         android:id="@+id/progressbar"
+        android:layout_centerInParent="true"
+        android:layout_toEndOf="@+id/searchview"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center" />
+
+    <TextView
+        android:alpha="0"
+         android:padding="10dp"
+        android:id="@+id/result"
+        android:text="Nenhum resultado encontrado"
+        android:textColor="?android:textColorPrimary"
+        android:textAlignment="center"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content" />
+    <androidx.recyclerview.widget.RecyclerView
+        android:alpha="0"
+        android:id="@+id/concessions"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent" />
+
+
+</LinearLayout>
