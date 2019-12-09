@@ -11,17 +11,30 @@
         tools:context=".view.activities.Home">
 
 
-        <FrameLayout
+        <androidx.viewpager.widget.ViewPager
+            android:background="@color/white"
+            android:id="@+id/view_pager"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent" />
+
+        <com.google.android.material.tabs.TabLayout
+            android:id="@+id/pages"
+            android:layout_alignParentBottom="true"
+            android:layout_centerInParent="true"
+            app:tabGravity="fill"
+            android:layout_width="match_parent"
+            app:elevation="3dp"
+            app:tabIconTint="@color/tabs_selector"
+            app:tabSelectedTextColor="@color/colorPrimaryDark"
+            android:layout_height="?android:attr/actionBarSize"
+            android:background="?android:colorBackground"/>
+
+        <!--FrameLayout
              android:layout_above="@id/navigation"
             android:id="@+id/fragment"
             android:name="com.google.android.gms.maps.SupportMapFragment"
             android:layout_width="match_parent"
             android:layout_height="match_parent" />
-
-
-
-
-
 
         <com.google.android.material.bottomnavigation.BottomNavigationView
             android:id="@+id/navigation"
@@ -33,7 +46,7 @@
             app:menu="@menu/navigation"
 
 
-            />
+            /-->
 
 
 

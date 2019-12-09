@@ -6,12 +6,9 @@ import android.widget.Toast
 
 import androidx.appcompat.app.AppCompatActivity
 
-import com.google.android.material.bottomnavigation.BottomNavigationView
-
 import com.intacta.sosviagens.R
 import com.intacta.sosviagens.Utils.Utilities.REQUEST_CHECK_SETTINGS
-import com.intacta.sosviagens.view.fragments.MainFragment
-import com.intacta.sosviagens.view.fragments.NumbersFragment
+import com.intacta.sosviagens.view.Adapter.ViewPagerNavAdapter
 
 import kotlinx.android.synthetic.main.activity_home.*
 
@@ -19,7 +16,7 @@ class Home : AppCompatActivity() {
 
 
 
-    private val mOnNavigationItemSelectedListener = BottomNavigationView.OnNavigationItemSelectedListener { item ->
+    /*private val mOnNavigationItemSelectedListener = BottomNavigationView.OnNavigationItemSelectedListener { item ->
         when (item.itemId) {
             R.id.navigation_home ->{
                 val mainfr = MainFragment()
@@ -37,20 +34,25 @@ class Home : AppCompatActivity() {
             }
         }
         false
-    }
+    }*/
 
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_home)
-
-        navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener)
-        navigation.selectedItemId = R.id.navigation_home
-
+        /*navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener)
+        navigation.selectedItemId = R.id.navigation_home*/
+        val adapter = ViewPagerNavAdapter(supportFragmentManager)
+        view_pager.adapter = adapter
+        pages.setupWithViewPager(view_pager)
+        setupTabIcons()
 
     }
-
+    private fun setupTabIcons(){
+        pages.getTabAt(0)?.setIcon(R.drawable.ic_near_me_black_24dp)
+        pages.getTabAt(1)?.setIcon(R.drawable.ic_emergency_hours)
+    }
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
