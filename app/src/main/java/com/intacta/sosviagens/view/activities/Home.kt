@@ -5,6 +5,8 @@ import android.os.Bundle
 import android.widget.Toast
 
 import androidx.appcompat.app.AppCompatActivity
+import androidx.viewpager.widget.ViewPager
+import com.google.firebase.database.FirebaseDatabase
 
 import com.intacta.sosviagens.R
 import com.intacta.sosviagens.Utils.Utilities.REQUEST_CHECK_SETTINGS
@@ -40,12 +42,15 @@ class Home : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
+        FirebaseDatabase.getInstance().setPersistenceEnabled(true);
+
         setContentView(R.layout.activity_home)
         /*navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener)
         navigation.selectedItemId = R.id.navigation_home*/
         val adapter = ViewPagerNavAdapter(supportFragmentManager)
         view_pager.adapter = adapter
         pages.setupWithViewPager(view_pager)
+
         setupTabIcons()
 
     }
@@ -54,12 +59,20 @@ class Home : AppCompatActivity() {
         pages.getTabAt(1)?.setIcon(R.drawable.ic_emergency_hours)
     }
 
+    override fun onBackPressed() {
+        if (view_pager.currentItem == 1){
+            view_pager.setCurrentItem(0,true)
+        }else{
+            super.onBackPressed()
+
+        }
+    }
+
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
         super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == REQUEST_CHECK_SETTINGS) {
             if (resultCode == RESULT_OK) {
-
                 Toast.makeText(getApplicationContext(), "GPS enabled", Toast.LENGTH_LONG).show();
             } else {
 

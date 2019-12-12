@@ -20,7 +20,9 @@ class NumbersPresenter(val numbersFragment: NumbersFragment):  presentercontract
 
     init {
         numbersFragment.searchview.queryHint = "Pesquise números de emergência e serviços de socorro"
+        numbersFragment.title.text = "Números de emergência"
         numbersFragment.searchview.setOnQueryTextListener(this)
+
 
         fadeOut(numbersFragment.swipeindicator).andThen(fadeIn(numbersFragment.title)
                 .andThen(fadeIn(numbersFragment.searchview))).andThen(fadeOut(numbersFragment.result)).andThen(fadeOut(numbersFragment.progressbar)).subscribe()
@@ -28,6 +30,9 @@ class NumbersPresenter(val numbersFragment: NumbersFragment):  presentercontract
         load()
 
     }
+
+
+
 
     fun fadeIn(view: View): Completable {
         val animationSubject = CompletableSubject.create()
@@ -78,9 +83,11 @@ class NumbersPresenter(val numbersFragment: NumbersFragment):  presentercontract
     }
 
     override fun onQueryTextChange(newText: String?): Boolean {
-        search(newText!!)
+        fadeIn( numbersFragment.progressbar)
         return false//To change body of created functions use File | Settings | File Templates.
     }
+
+
 
 
 }

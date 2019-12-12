@@ -1,18 +1,9 @@
 package com.intacta.sosviagens.model.Beans
 
-class Suggest : Road {
-
-    private var dia: String? = null
-
-    constructor() {}
+class Suggest(val dia: String,val rodovia: String,val platform: String)
 
 
-    fun setDia(dia: String) {
-        this.dia = dia
-    }
 
-    constructor(rodovia: String, concessionaria: String, telefone: String, id: String, dia: String) : super(rodovia, concessionaria, telefone, id) {
-        this.dia = dia
-    }
-}
+
+
 

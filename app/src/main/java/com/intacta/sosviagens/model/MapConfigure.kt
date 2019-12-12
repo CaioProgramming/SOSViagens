@@ -33,11 +33,10 @@ import java.io.IOException
 import java.util.*
 
 
-class MapConfigure(val mapFragment: SupportMapFragment, val mainPresenter: MainPresenter):
+class MapConfigure(mapFragment: SupportMapFragment, val mainPresenter: MainPresenter):
         GoogleApiClient.ConnectionCallbacks, GoogleApiClient.OnConnectionFailedListener,
         LocationListener, ResultCallback<LocationSettingsResult>, OnMapReadyCallback{
 
-    var locationSettingsResult: LocationSettingsResult? = null
     var mFusedLocationClient:FusedLocationProviderClient? = null
     var activity: Activity? = null
     var mMap: GoogleMap? = null
@@ -217,11 +216,24 @@ class MapConfigure(val mapFragment: SupportMapFragment, val mainPresenter: MainP
         if (Isnight(activity!!)) {
             Log.d("Map styling", "Try to set night mode map style")
 
-            try { // Customise the styling of the base map using a JSON object defined
-// in a raw resource file.
+            try {
                 val success: Boolean = googleMap.setMapStyle(
                         MapStyleOptions.loadRawResourceStyle(
                                 activity, com.intacta.sosviagens.R.raw.night_map))
+                if (!success) {
+                    Log.d("Map styling", "Style parsing failed")
+                }
+
+            } catch (e: NotFoundException) {
+                Log.d("Map styling", "Map style not found ${e.message}")
+            }
+        }else{
+            Log.d("Map styling", "Try to set day mode map style")
+
+            try {
+                val success: Boolean = googleMap.setMapStyle(
+                        MapStyleOptions.loadRawResourceStyle(
+                                activity, com.intacta.sosviagens.R.raw.day_map))
                 if (!success) {
                     Log.d("Map styling", "Style parsing failed")
                 }

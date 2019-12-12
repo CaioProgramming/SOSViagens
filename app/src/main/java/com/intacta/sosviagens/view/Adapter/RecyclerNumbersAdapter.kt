@@ -1,5 +1,7 @@
 package com.intacta.sosviagens.view.Adapter
 
+
+
 import android.Manifest
 import android.app.Activity
 import android.content.Intent
@@ -9,22 +11,17 @@ import android.os.CountDownTimer
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.view.animation.Animation
 import android.view.animation.AnimationUtils
 import android.widget.ImageView
 import android.widget.RelativeLayout
 import android.widget.TextView
-
-import com.intacta.sosviagens.model.Beans.Number
-import com.intacta.sosviagens.R
-import com.intacta.sosviagens.Utils.Utilities
-
-import java.util.ArrayList
 import androidx.core.app.ActivityCompat
 import androidx.recyclerview.widget.RecyclerView
+import com.intacta.sosviagens.R
+import com.intacta.sosviagens.model.Beans.Number
 import io.rmiri.skeleton.SkeletonGroup
 
-class RecyclerNumbersAdapter(private val mActivity: Activity, private val numberlist: ArrayList<Number>) : RecyclerView.Adapter<RecyclerNumbersAdapter.MyViewHolder>() {
+class RecyclerNumbersAdapter(private val mActivity: Activity, private val numberlist: List<Number>) : RecyclerView.Adapter<RecyclerNumbersAdapter.MyViewHolder>() {
 
     override fun getItemId(position: Int): Long {
         return position.toLong()
@@ -34,7 +31,7 @@ class RecyclerNumbersAdapter(private val mActivity: Activity, private val number
         return position
     }
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerNumbersAdapter.MyViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
         val view: View
         val mInflater = LayoutInflater.from(mActivity.baseContext)
         view = mInflater.inflate(R.layout.roadsuggest, parent, false)
@@ -42,7 +39,7 @@ class RecyclerNumbersAdapter(private val mActivity: Activity, private val number
         return MyViewHolder(view)
     }
 
-    override fun onBindViewHolder(holder: RecyclerNumbersAdapter.MyViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
         val timer = object : CountDownTimer(500, 100) {
             override fun onTick(millisUntilFinished: Long) {
 
@@ -54,35 +51,23 @@ class RecyclerNumbersAdapter(private val mActivity: Activity, private val number
             }
         }.start()
         val n = numberlist[position]
-        var animation: Animation? = null
-        if (n.ident != Utilities.calltitle) {
-            animation = AnimationUtils.loadAnimation(mActivity, R.anim.fade_in)
+
+           val animation = AnimationUtils.loadAnimation(mActivity, R.anim.fade_in)
             holder.road.text = n.ident
             holder.concess.text = n.telefone
             println(n.tipo)
 
-            if (n.tipo == "Seguradora") {
-                holder.type.setImageDrawable(mActivity.getDrawable(R.drawable.ic_shield))
-            } else if (n.tipo == "Órgão regulador") {
-                holder.type.setImageDrawable(mActivity.getDrawable(R.drawable.ic_university_with_a_flag))
-            } else {
-                holder.type.setImageDrawable(mActivity.getDrawable(R.drawable.ic_plus))
-
-            }
             holder.layout.setOnClickListener { ligacao(n.telefone!!) }
             holder.layout.startAnimation(animation)
 
 
-            /*holder.call.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                ligacao(n.getTelefone());
-
-            }
-        }); */
+        if (n.tipo == "Seguradora") {
+            holder.type.setImageDrawable(mActivity.getDrawable(R.drawable.ic_shield))
+        } else if (n.tipo == "Órgão regulador") {
+            holder.type.setImageDrawable(mActivity.getDrawable(R.drawable.ic_university_with_a_flag))
         } else {
-            holder.road.text = n.ident
-            holder.concess.visibility = View.GONE
+            holder.type.setImageDrawable(mActivity.getDrawable(R.drawable.ic_error_black_24dp))
+
         }
 
 
@@ -129,9 +114,9 @@ class RecyclerNumbersAdapter(private val mActivity: Activity, private val number
         init {
             road = itemView.findViewById(R.id.road)
             concess = itemView.findViewById(R.id.concess)
+            type = itemView.findViewById(R.id.type)
             layout = itemView.findViewById(R.id.layout)
             skeletonGroup = itemView.findViewById(R.id.skeleton_group)
-            type = itemView.findViewById(R.id.type)
 
         }
     }

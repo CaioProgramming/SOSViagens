@@ -1,0 +1,24 @@
+<layer-list xmlns:android="http://schemas.android.com/apk/res/android">
+    <item>
+        <shape>
+            <gradient
+                android:angle="45"
+                android:centerColor="@color/red_500"
+                android:endColor="@color/red_A200"
+                android:startColor="@color/red_A100" />
+            <corners android:radius="20dp" />
+        </shape>
+    </item>
+
+    <item
+
+        android:bottom="10dp"
+        android:drawable="@drawable/ic_plus"
+        android:left="10dp"
+        android:right="10dp"
+        android:top="10dp">
+
+
+
+    </item>
+</layer-list>

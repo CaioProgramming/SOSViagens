@@ -44,7 +44,7 @@ class SosDB(val mainPresenter: MainPresenter):ValueEventListener {
         mainPresenter.mainFragment.concessions.adapter = adapter
 
 
-     }
+    }
 
 
     companion object{

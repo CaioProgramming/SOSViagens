@@ -2,5 +2,5 @@
 <selector xmlns:android="http://schemas.android.com/apk/res/android">
     <item android:state_selected="true"
         android:color="@color/colorPrimaryDark" /> <!-- selected -->
-    <item android:color="@android:color/secondary_text_light" /> <!-- default -->
+    <item android:color="?android:textColorHint" /> <!-- default -->
 </selector>

@@ -12,7 +12,7 @@
 
 
         <androidx.viewpager.widget.ViewPager
-            android:background="@color/white"
+            android:background="?android:colorBackground"
             android:id="@+id/view_pager"
             android:layout_width="match_parent"
             android:layout_height="match_parent" />
@@ -25,7 +25,8 @@
             android:layout_width="match_parent"
             app:elevation="3dp"
             app:tabIconTint="@color/tabs_selector"
-            app:tabSelectedTextColor="@color/colorPrimaryDark"
+             app:tabIndicatorColor="@color/transparent"
+             app:tabTextColor="@color/tabs_selector"
             android:layout_height="?android:attr/actionBarSize"
             android:background="?android:colorBackground"/>
 

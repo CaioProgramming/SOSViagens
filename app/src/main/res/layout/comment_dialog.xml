@@ -2,9 +2,9 @@
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
      android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:layout_margin="5dp"
-    app:cardCornerRadius="15dp"
+    android:layout_height="wrap_content"
+    android:layout_margin="10dp"
+    app:cardCornerRadius="10dp"
     android:orientation="vertical"
      android:gravity="center">
 
@@ -32,12 +32,7 @@
                 android:layout_height="wrap_content"
                 android:text="Conte-nos com foi seu atendimento"
                 />
-            <ProgressBar
-                android:visibility="gone"
-                android:id="@+id/loading"
-                android:indeterminateTint="@color/red_500"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content" />
+
             <LinearLayout
                 android:id="@+id/ratinglayout"
                 android:orientation="vertical"
@@ -60,6 +55,7 @@
                     app:progress_color="@color/blue_400" />
             </LinearLayout>
             <com.google.android.material.textfield.TextInputLayout
+                android:padding="10dp"
                 android:id="@+id/commentlayout"
                  android:layout_width="match_parent"
                 android:hint="Comente sobre sua experiência"
@@ -81,62 +77,12 @@
             </com.google.android.material.textfield.TextInputLayout>
 
 
-            <com.google.android.material.textfield.TextInputLayout
-                android:id="@+id/cortesylayout"
-                android:layout_width="match_parent"
-                android:hint="Cortesia"
-                android:layout_height="wrap_content">
-                <EditText
-                     android:padding="10dp"
-                    android:layout_marginStart="30dp"
-                    android:layout_marginEnd="30dp"
-                    android:layout_gravity="top"
-                    android:backgroundTint="@color/transparent"
-                    android:inputType="textMultiLine"
-                    android:id="@+id/cortesy"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    />
-
-            </com.google.android.material.textfield.TextInputLayout>
-
-
-
-            <LinearLayout
-                 android:id="@+id/timelayout"
-                android:orientation="horizontal"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content">
-                <EditText
-                    android:hint="30"
-                    android:padding="10dp"
-                    android:layout_marginStart="30dp"
-                    android:layout_marginEnd="30dp"
-                    android:layout_gravity="top"
-                    android:backgroundTint="@color/transparent"
-                    android:inputType="number"
-                    android:id="@+id/time"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    />
-
-                <Spinner
-                    android:id="@+id/timetype"
-                    android:entries="@array/tempo"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content" />
-
-
-            </LinearLayout>
-
-
-
             <Button
                 android:elevation="5dp"
                 android:id="@+id/save"
-                android:layout_width="wrap_content"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@color/transparent"
+                android:background="@drawable/alert_button"
                 android:padding="10dp"
                 android:text="Enviar"
                 android:textColor="@color/buttontext"

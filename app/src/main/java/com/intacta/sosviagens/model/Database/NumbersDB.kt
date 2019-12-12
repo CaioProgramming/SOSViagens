@@ -1,12 +1,16 @@
 package com.intacta.sosviagens.model.Database
 
+import android.app.Activity
+import android.util.Log
 import android.view.View
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.google.firebase.database.*
+import com.intacta.sosviagens.R
 import com.intacta.sosviagens.model.Beans.Number
+import com.intacta.sosviagens.model.Beans.Section
 import com.intacta.sosviagens.presenter.NumbersPresenter
-import com.intacta.sosviagens.view.Adapter.RecyclerNumbersAdapter
+import com.intacta.sosviagens.view.Adapter.RecyclerSectionsAdapter
 import kotlinx.android.synthetic.main.concessions_layout.*
 
 
@@ -16,21 +20,54 @@ class NumbersDB(val numbersPresenter: NumbersPresenter):ValueEventListener{
     }
 
 
+    var activity:Activity?= null
+
+    init {
+        activity = numbersPresenter.numbersFragment.activity
+    }
 
 
     override fun onDataChange(snapshot: DataSnapshot) {
-        val numberslit:ArrayList<Number> = ArrayList()
+        val emergencylist:ArrayList<Number> = ArrayList()
+        val assunrancelist:ArrayList<Number> = ArrayList()
+        val governmentlist:ArrayList<Number> = ArrayList()
         for (d in snapshot.children){
             val n = d.getValue<Number>(Number::class.java)
             if (n != null){
-                numberslit.add(n)
+                when {
+                    n.tipo.equals("Emergência") -> {
+                        Log.println(Log.INFO,"Numbers", "added ${n.ident} to emergency list")
+                        emergencylist.add(n)
+
+                    }
+                    n.tipo.equals("Seguradora") -> {
+                        Log.println(Log.INFO,"Numbers", "added ${n.ident} to assurance list")
+
+                        assunrancelist.add(n)
+
+                    }
+                    else -> {
+                        Log.println(Log.INFO,"Numbers", "added ${n.ident} to government list")
+
+                        governmentlist.add(n)
+                    }
+                }
             }
         }
+        val sections:ArrayList<Section> = ArrayList()
+
+        sections.add(Section("Números públicos",emergencylist))
+        sections.add(Section("Seguradoras",assunrancelist))
+        sections.add(Section("Órgãos reguladores",governmentlist))
+
+
+
+
         val activity = numbersPresenter.numbersFragment.requireActivity()
-        val numberadapter = RecyclerNumbersAdapter(activity, numberslit)
+        val sectionsAdapter = RecyclerSectionsAdapter(activity, sections)
         val llm = GridLayoutManager(activity, 1, RecyclerView.VERTICAL, false)
-        numberadapter.notifyDataSetChanged()
-        numbersPresenter.recyclerView.adapter = numberadapter
+        sectionsAdapter.notifyDataSetChanged()
+        numbersPresenter.recyclerView.adapter = sectionsAdapter
         numbersPresenter.recyclerView.layoutManager = llm
         numbersPresenter.numbersFragment.progressbar.visibility = View.GONE
 
@@ -55,17 +92,44 @@ class NumbersDB(val numbersPresenter: NumbersPresenter):ValueEventListener{
 
             override fun onDataChange(snapshot: DataSnapshot) {
 
-                val numberslit:ArrayList<Number> = ArrayList()
+                val emergencylist:ArrayList<Number> = ArrayList()
+                val assunrancelist:ArrayList<Number> = ArrayList()
+                val governmentlist:ArrayList<Number> = ArrayList()
                 for (d in snapshot.children){
                     val n = d.getValue<Number>(Number::class.java)
                     if (n != null && n.ident!!.contains(pesquisa,true) ||
                             n!!.telefone!!.contains(pesquisa,true) ||
                             n.tipo!!.contains(pesquisa,true)){
-                        numberslit.add(n)
+                        when {
+                            n.tipo.equals("Emergência") -> {
+                                Log.println(Log.INFO,"Numbers", "added ${n.ident} to emergency list")
+                                emergencylist.add(n)
+
+                            }
+                            n.tipo.equals("Seguradora") -> {
+                                Log.println(Log.INFO,"Numbers", "added ${n.ident} to assurance list")
+
+                                assunrancelist.add(n)
+
+                            }
+                            else -> {
+                                Log.println(Log.INFO,"Numbers", "added ${n.ident} to government list")
+
+                                governmentlist.add(n)
+                            }
+                        }
+
                     }
                 }
+                val sections:ArrayList<Section> = ArrayList()
+
+
+                sections.add(Section("Números publicos",emergencylist))
+                sections.add(Section("Seguradoras",assunrancelist))
+                sections.add(Section("Órgãos reguladores",governmentlist))
+
                 val activity = numbersPresenter.numbersFragment.requireActivity()
-                val numberadapter = RecyclerNumbersAdapter(activity, numberslit)
+                val numberadapter = RecyclerSectionsAdapter(activity, sections)
                 val llm = GridLayoutManager(activity, 1, RecyclerView.VERTICAL, false)
                 numberadapter.notifyDataSetChanged()
                 numbersPresenter.recyclerView.adapter = numberadapter

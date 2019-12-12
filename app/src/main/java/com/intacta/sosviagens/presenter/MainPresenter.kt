@@ -43,9 +43,6 @@ class MainPresenter(val mainFragment: MainFragment) : presentercontracts, Search
 
     var activity:Activity? = null
     var mapConfigure: MapConfigure? = null
-    var mMap:GoogleMap? = null
-    private var locationRequest: LocationRequest? = null
-    var  manager:LocationManager?= null
 
     override fun load() {
         val sosDB = SosDB.build(this).load()

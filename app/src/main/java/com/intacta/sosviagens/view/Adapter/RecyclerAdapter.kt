@@ -20,6 +20,7 @@ import com.intacta.sosviagens.R
 import java.util.ArrayList
 import androidx.core.app.ActivityCompat
 import androidx.recyclerview.widget.RecyclerView
+import com.intacta.sosviagens.Utils.Alerts
 import io.rmiri.skeleton.SkeletonGroup
 
 
@@ -62,7 +63,8 @@ class RecyclerAdapter(private val mActivity: Activity, private val roadlist: Arr
     }
 
     private fun ligacao(road: Road) {
-        println("ligando para " + road.rodovia + road.concessionaria + road.id)
+
+       // println("ligando para " + road.rodovia + road.concessionaria + road.id)
         val callIntent = Intent(Intent.ACTION_CALL)
         callIntent.data = Uri.parse("tel:" + Uri.encode(road.telefone))
         callIntent.flags = Intent.FLAG_ACTIVITY_NEW_TASK
@@ -81,17 +83,14 @@ class RecyclerAdapter(private val mActivity: Activity, private val roadlist: Arr
             mActivity.startActivity(dialntent)
             return
         }
-          mActivity.startActivity(callIntent)
+        val a = Alerts(mActivity).CommentAlert(road)
+        mActivity.startActivity(callIntent)
+
 
     }
 
     override fun getItemCount(): Int {
-        return if (roadlist.size == 0) {
-            0
-
-        } else {
-            roadlist.size
-        }
+       return roadlist.size
     }
 
     override fun getItemId(position: Int): Long {
