@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_width="match_parent"
+    xmlns:Skeleton="http://schemas.android.com/tools"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+     android:foreground="?attr/selectableItemBackground"
+    android:id="@+id/layout"
+    android:layout_marginBottom="5dp"
+    android:orientation="vertical"
+    android:layout_height="wrap_content">
+
+    <TextView
+        android:textColor="@color/white"
+        android:padding="5dp"
+        android:backgroundTint="@color/colorPrimaryDark"
+        android:background="@drawable/ripple_button"
+        android:layout_margin="10dp"
+        android:textStyle="bold"
+        style="@style/TextAppearance.MaterialComponents.Headline5"
+        android:text="Rodovia Raposo Tavares"
+        android:id="@+id/road"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content" />
+    <io.rmiri.skeleton.SkeletonGroup
+        android:layout_margin="10dp"
+        android:id="@+id/skeleton_group"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        Skeleton:SK_BackgroundViewsColor="#00000000"
+        Skeleton:SK_animationAutoStart="true"
+        Skeleton:SK_animationDirection="LTR"
+        Skeleton:SK_animationDuration="1000"
+        Skeleton:SK_animationFinishType="gradient"
+        Skeleton:SK_animationNormalType="gradient"
+        Skeleton:SK_backgroundMainColor="@android:color/transparent"
+        Skeleton:SK_highLightColor="#D50000">
+        <io.rmiri.skeleton.SkeletonView
+            Skeleton:SK_shapeType="rect"
+            android:layout_gravity="center"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content">
+            <androidx.cardview.widget.CardView
+                app:cardCornerRadius="15dp"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content">
+                <androidx.recyclerview.widget.RecyclerView
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content" />
+            </androidx.cardview.widget.CardView>
+        </io.rmiri.skeleton.SkeletonView>
+    </io.rmiri.skeleton.SkeletonGroup>
+
+
+
+</LinearLayout>

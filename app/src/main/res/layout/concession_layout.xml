@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:bind="http://schemas.android.com/apk/res-auto"
+    xmlns:card_view="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools">
+    <data>
+        <variable
+            name="concession"
+            type="com.intacta.sosviagens.model.Beans.Concession"/>
+        <variable
+            name="activity"
+            type="android.app.Activity" />
+
+    </data>
+    <TextView
+        android:onClick="@{concession.ligacao(activity)}"
+        android:orientation="horizontal"
+        android:id="@+id/concession"
+        android:layout_width="match_parent"
+        android:text=" @{concession.name(concession.number)}"
+        android:textColor="?android:textColorSecondary"
+        android:layout_height="wrap_content"/>
+
+</layout>

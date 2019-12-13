@@ -28,7 +28,7 @@ import com.intacta.sosviagens.Utils.Utilities
 import com.intacta.sosviagens.Utils.Utilities.Isnight
 import com.intacta.sosviagens.presenter.MainPresenter
 import de.mateware.snacky.Snacky
-import kotlinx.android.synthetic.main.concessions_layout.*
+import kotlinx.android.synthetic.main.searchview_layout.*
 import java.io.IOException
 import java.util.*
 

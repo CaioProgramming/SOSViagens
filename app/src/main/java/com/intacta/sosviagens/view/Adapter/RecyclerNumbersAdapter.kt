@@ -34,7 +34,7 @@ class RecyclerNumbersAdapter(private val mActivity: Activity, private val number
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
         val view: View
         val mInflater = LayoutInflater.from(mActivity.baseContext)
-        view = mInflater.inflate(R.layout.roadsuggest, parent, false)
+        view = mInflater.inflate(R.layout.roadlayout, parent, false)
 
         return MyViewHolder(view)
     }

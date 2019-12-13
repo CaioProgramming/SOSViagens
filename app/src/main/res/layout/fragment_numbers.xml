@@ -7,7 +7,7 @@
         android:backgroundTint="@color/grey_100"
         tools:context=".view.fragments.NumbersFragment">
 
-        <include layout="@layout/concessions_layout" />
+        <include layout="@layout/searchview_layout" />
 
     </FrameLayout>
 </layout>

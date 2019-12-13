@@ -11,7 +11,7 @@ import com.intacta.sosviagens.model.Beans.Number
 import com.intacta.sosviagens.model.Beans.Section
 import com.intacta.sosviagens.presenter.NumbersPresenter
 import com.intacta.sosviagens.view.Adapter.RecyclerSectionsAdapter
-import kotlinx.android.synthetic.main.concessions_layout.*
+import kotlinx.android.synthetic.main.searchview_layout.*
 
 
 class NumbersDB(val numbersPresenter: NumbersPresenter):ValueEventListener{

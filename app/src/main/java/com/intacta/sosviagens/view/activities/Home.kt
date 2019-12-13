@@ -5,7 +5,6 @@ import android.os.Bundle
 import android.widget.Toast
 
 import androidx.appcompat.app.AppCompatActivity
-import androidx.viewpager.widget.ViewPager
 import com.google.firebase.database.FirebaseDatabase
 
 import com.intacta.sosviagens.R
@@ -42,7 +41,7 @@ class Home : AppCompatActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        FirebaseDatabase.getInstance().setPersistenceEnabled(true);
+        FirebaseDatabase.getInstance().setPersistenceEnabled(true)
 
         setContentView(R.layout.activity_home)
         /*navigation.setOnNavigationItemSelectedListener(mOnNavigationItemSelectedListener)
@@ -70,13 +69,12 @@ class Home : AppCompatActivity() {
 
     override fun onActivityResult(requestCode: Int, resultCode: Int, data: Intent?) {
         super.onActivityResult(requestCode, resultCode, data)
-        super.onActivityResult(requestCode, resultCode, data);
         if (requestCode == REQUEST_CHECK_SETTINGS) {
             if (resultCode == RESULT_OK) {
-                Toast.makeText(getApplicationContext(), "GPS enabled", Toast.LENGTH_LONG).show();
+                Toast.makeText(applicationContext, "GPS enabled", Toast.LENGTH_LONG).show()
             } else {
 
-                Toast.makeText(getApplicationContext(), "GPS is not enabled", Toast.LENGTH_LONG).show();
+                Toast.makeText(applicationContext, "GPS is not enabled", Toast.LENGTH_LONG).show()
             }
 
         }

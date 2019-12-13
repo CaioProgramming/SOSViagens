@@ -106,11 +106,9 @@ class Alerts(private val activity: Activity){
 
     }
 
-    fun CommentAlert(road: Road) {
-        val out = AnimationUtils.loadAnimation(activity, R.anim.fui_slide_out_left)
-        val `in` = AnimationUtils.loadAnimation(activity, R.anim.fui_slide_in_right)
+    fun CommentAlert(id: String) {
         if (checkuser()) {
-            val myDialog = BottomSheetDialog(Objects.requireNonNull(activity), R.style.Dialog_No_Border)
+            val myDialog = BottomSheetDialog(Objects.requireNonNull(activity))
             myDialog.requestWindowFeature(Window.FEATURE_NO_TITLE)
             myDialog.setCanceledOnTouchOutside(true)
             myDialog.setContentView(R.layout.comment_dialog)
@@ -122,9 +120,9 @@ class Alerts(private val activity: Activity){
             val comment:EditText = myDialog.findViewById(R.id.comment)!!
             val save:Button = myDialog.findViewById(R.id.save)!!
 
-            title.text = "Avalie a ${road.rodovia}"
+            title.text = "Avalie seu atendimento"
 
-            save.setOnClickListener { Salvar(comment,rating, road, myDialog) }
+            save.setOnClickListener { Salvar(comment,rating, id, myDialog) }
 
         } else {
             val providers = listOf(AuthUI.IdpConfig.GoogleBuilder().build())
@@ -138,7 +136,7 @@ class Alerts(private val activity: Activity){
 
     }
 
-    private fun Salvar(comment: EditText,rating: ColorRatingBar, road: Road, dialog: BottomSheetDialog) {
+    private fun Salvar(comment: EditText,rating: ColorRatingBar, id: String, dialog: BottomSheetDialog) {
 
 
         val user = FirebaseAuth.getInstance().currentUser
@@ -147,7 +145,7 @@ class Alerts(private val activity: Activity){
         val oppinion = rating.rating.toString()
         //val tempo = time.text.toString() + timetype!!.selectedItem.toString()
         val dia = dia
-        val cb = Comment(comnt,username!!,dia,oppinion,road.id!!)
+        val cb = Comment(comnt,username!!,dia,oppinion,id)
 
         val commentsDB = DBUtilities(activity)
         commentsDB.SendComment(cb)

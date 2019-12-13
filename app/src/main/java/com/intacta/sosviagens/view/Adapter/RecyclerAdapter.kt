@@ -27,15 +27,15 @@ import io.rmiri.skeleton.SkeletonGroup
 class RecyclerAdapter(private val mActivity: Activity, private val roadlist: ArrayList<Road>) : RecyclerView.Adapter<RecyclerAdapter.MyViewHolder>() {
 
 
-    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerAdapter.MyViewHolder {
+    override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): MyViewHolder {
         val view: View
         val mInflater = LayoutInflater.from(mActivity.baseContext)
-        view = mInflater.inflate(R.layout.roadsuggest, parent, false)
+        view = mInflater.inflate(R.layout.roadlayout, parent, false)
 
         return MyViewHolder(view)
     }
 
-    override fun onBindViewHolder(holder: RecyclerAdapter.MyViewHolder, position: Int) {
+    override fun onBindViewHolder(holder: MyViewHolder, position: Int) {
         val r = roadlist[position]
         val timer = object : CountDownTimer(500, 100) {
             override fun onTick(millisUntilFinished: Long) {

@@ -17,7 +17,7 @@
             android:layout_height="match_parent"/>
 
         <include
-            layout="@layout/concessions_layout"
+            layout="@layout/searchview_layout"
             android:id="@+id/sliding_view"
             android:layout_width="match_parent"
             android:layout_height="match_parent"

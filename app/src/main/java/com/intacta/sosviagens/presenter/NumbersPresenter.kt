@@ -9,7 +9,7 @@ import com.intacta.sosviagens.model.Database.NumbersDB
 import com.intacta.sosviagens.view.fragments.NumbersFragment
  import io.reactivex.Completable
  import io.reactivex.subjects.CompletableSubject
- import kotlinx.android.synthetic.main.concessions_layout.*
+ import kotlinx.android.synthetic.main.searchview_layout.*
 
 
 class NumbersPresenter(val numbersFragment: NumbersFragment):  presentercontracts, SearchView.OnQueryTextListener{

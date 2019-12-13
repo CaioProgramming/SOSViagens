@@ -31,8 +31,8 @@ import com.intacta.sosviagens.R
 import com.intacta.sosviagens.Utils.PermissionRequests
 import com.intacta.sosviagens.presenter.MainPresenter
 import de.mateware.snacky.Snacky
-import kotlinx.android.synthetic.main.concessions_layout.*
-import kotlinx.android.synthetic.main.concessions_layout.view.*
+import kotlinx.android.synthetic.main.searchview_layout.*
+import kotlinx.android.synthetic.main.searchview_layout.view.*
 import kotlinx.android.synthetic.main.fragment_main.*
 import java.io.IOException
 import java.util.*

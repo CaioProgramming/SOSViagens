@@ -8,7 +8,7 @@ import com.intacta.sosviagens.Utils.Alerts
 import com.intacta.sosviagens.model.Beans.Road
 import com.intacta.sosviagens.presenter.MainPresenter
 import com.intacta.sosviagens.view.Adapter.RecyclerAdapter
-import kotlinx.android.synthetic.main.concessions_layout.*
+import kotlinx.android.synthetic.main.searchview_layout.*
 
 class SosDB(val mainPresenter: MainPresenter):ValueEventListener {
 
@@ -25,7 +25,10 @@ class SosDB(val mainPresenter: MainPresenter):ValueEventListener {
             println("key ${d.key}")
             if (r != null) {
                 r.id = d.key
-                concessionslist.add(r)
+                r.findconcessions().doOnComplete {
+                    concessionslist.add(r)
+
+                }.subscribe()
 
             }
         }
@@ -86,10 +89,12 @@ class SosDB(val mainPresenter: MainPresenter):ValueEventListener {
                 for (d in dataSnapshot.children) {
                     val r = d.getValue<Road>(Road::class.java)
                     println("key ${d.key}")
-                    if (r != null && r.rodovia!!.contains(pesquisa,true) || r!!.concessionaria!!.contains(pesquisa,true)) {
+                    if (r != null && r.rodovia!!.contains(pesquisa,true)) {
                         r.id = d.key
-                        concessionslist.add(r)
+                        r.findconcessions().doOnComplete {
+                            concessionslist.add(r)
 
+                        }.subscribe()
                     }
                 }
                 print("founded ${concessionslist.size} concesssions ")
